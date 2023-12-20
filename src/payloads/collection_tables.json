@@ -1,0 +1,132 @@
+{
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "token": "2957986216",
+    "usertype": "NONE",
+    "main_menu": {
+        "req_url": "https://192.168.3.50/PIC6/api/menu/getmenutable",
+        "req_pay": [
+            {
+                "name": "general_data",
+                "pod": {
+                    "token": "token",
+                    "path": "GENUNIT",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "temps",
+                "pod": {
+                    "token": "token",
+                    "path": "TEMP",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "pressures",
+                "pod": {
+                    "token": "token",
+                    "path": "PRESSURE",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "input_status",
+                "pod": {
+                    "token": "token",
+                    "path": "INPUTS",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "output_status",
+                "pod": {
+                    "token": "token",
+                    "path": "OUTPUTS",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "pump_status",
+                "pod": {
+                    "token": "token",
+                    "path": "PUMPSTAT",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "run_times",
+                "pod": {
+                    "token": "token",
+                    "path": "RUNTIME",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "modes",
+                "pod": {
+                    "token": "token",
+                    "path": "MODES",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "reclaim",
+                "pod": {
+                    "token": "token",
+                    "path": "RECLAIM",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "freecooling",
+                "pod": {
+                    "token": "token",
+                    "path": "FREECOOL",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            },
+            {
+                "name": "freecooling_status",
+                "pod": {
+                    "token": "token",
+                    "path": "DCFC_STA",
+                    "type": "service_data",
+                    "POC_table": "0"
+                }
+            }
+        ]        
+    },
+    "alarms": {
+        "req_url": "192.168.3.50/PIC6/api/alarms/getalarms",
+        "req_pay": [
+            {
+                "token": "token",
+                "table_name": "ALARMRST"
+            },
+            {
+                "token": "token",
+                "table_name": "ALAM_CUR"
+            },
+            {
+                "token": "token",
+                "table_name": "ALARHIST"
+            },
+            {
+                "token": "token",
+                "table_name": "ALARHIS2"
+            }
+        ]        
+    }
+}
