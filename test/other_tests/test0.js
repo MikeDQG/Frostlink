@@ -25,5 +25,3 @@ async function fetch_some_data(token) {
 sporocilo je spet isto: 
 { error: "Failed to get data from menu generation table!", status: "0" }
 */
-
-
