@@ -32,7 +32,7 @@ class Requester():
     
 
     def get_cookie(self):
-        self.session.get("https://192.168.3.50/PIC6/")
+        self.session.get('https://192.168.3.50/PIC6/')
 
     def login(self):
         url = 'https://192.168.3.50/PIC6/api/auth/login'
@@ -46,11 +46,7 @@ class Requester():
         print(response.status_code)
         
         return str(data[0]['token']) # str(data['data'])
-        print(token)
-        
-        headers = {
-            'Content-Type': 'application/json'
-        }
+      
 
     def logout(self):
         url = 'https://192.168.3.50/PIC6/api/auth/logout'
@@ -89,5 +85,25 @@ class Requester():
         response = self.session.post(url, json=payload)
         print(response.status_code)
     
-
-        
+    def get_point_value(self):
+        url = 'https://192.168.3.50/PIC6/api/point_value/getpointvalue'
+        payload = {
+            "pathlist":[
+                {"widgetType":"PointValue","path":"db/Ui_Alias_COND_EWT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Syn_Msg_Bottom/description"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_CTRL_PNT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_OAT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_CAP_T/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_unit_typ/present-value"},
+                {"widgetType":"PointValue","path":"db/CTRLID_DEV_LOCATION/active-text"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_FLOW_SW/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_EWT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_LWT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_COND_LWT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_runtest_ip/active-text"},
+                {"widgetType":"PointValue","path":"db/Ui_runtest_mask/active-text"},
+                {"widgetType":"PointValue","path":"db/Ui_runtest_eth/active-text"}],
+            "token": self.token
+        }
+        response = self.session.post(url, json=payload)
+        print(response.json())
