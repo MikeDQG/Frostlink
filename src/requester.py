@@ -105,5 +105,10 @@ class Requester():
                 {"widgetType":"PointValue","path":"db/Ui_runtest_eth/active-text"}],
             "token": self.token
         }
+        # handle response, print it out in a custom format
         response = self.session.post(url, json=payload)
-        print(response.json())
+        response_body = response.json()
+        values = response_body['pathlist']
+        for val in values:
+            print(val)
+        print(response_body['status'])

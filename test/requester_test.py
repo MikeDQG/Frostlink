@@ -1,5 +1,7 @@
 import requester
 
+# if testing doesn't work, try this in terminal: $env:PYTHONPATH="src/"
+
 def test0():
     '''get data from the table'''
     r1 = requester.Requester()
@@ -17,4 +19,7 @@ def test1():
     r2.get_point_value()
     r2.logout()
 
-test1()
+def test2():
+    '''press button'''
+    r3 = requester.Requester()
+    r3    
