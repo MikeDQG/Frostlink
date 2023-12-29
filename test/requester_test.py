@@ -20,6 +20,12 @@ def test1():
     r2.logout()
 
 def test2():
-    '''press button'''
+    '''confirm alarms'''
     r3 = requester.Requester()
-    r3    
+    try:
+        r3.confirm_alarms()
+    except:
+        print("except")
+    r3.logout()
+
+test2()
