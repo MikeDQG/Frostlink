@@ -2,8 +2,25 @@
     "headers": {
         "Content-Type": "application/json"
     },
-    "token": "2957986216",
     "usertype": "NONE",
+    "home_carrier": {
+        "pathlist":[
+            {"widgetType":"PointValue","path":"db/Ui_Alias_COND_EWT/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Syn_Msg_Bottom/description"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_CTRL_PNT/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_OAT/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_CAP_T/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_unit_typ/present-value"},
+            {"widgetType":"PointValue","path":"db/CTRLID_DEV_LOCATION/active-text"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_FLOW_SW/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_EWT/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_LWT/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_Alias_COND_LWT/present-value"},
+            {"widgetType":"PointValue","path":"db/Ui_runtest_ip/active-text"},
+            {"widgetType":"PointValue","path":"db/Ui_runtest_mask/active-text"},
+            {"widgetType":"PointValue","path":"db/Ui_runtest_eth/active-text"}
+        ]
+    },
     "main_menu": {
         "req_url": "https://192.168.3.50/PIC6/api/menu/getmenutable",
         "req_pay": [

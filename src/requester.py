@@ -116,13 +116,17 @@ class Requester():
     def confirm_alarms(self):
         print("token: ", self.token)
         url = 'https://192.168.3.50/PIC6/api/tabular_data/savetabulardatainfo'
-        payload = {
+        '''payload = {
             "datasource": "ALARMRST", 
             "type": "service_data",
             "data": [{"path": "ccn/ALARMRST/0", "value": "1"}],
-            "token": self.token}
+            "token": self.token}'''
         payload = {"datasource":"ALARMRST","type":"service_data","data":[{"path":"ccn/ALARMRST/0","value":"1"}],"token":self.token}
         response = self.session.post(url, json=payload)
         #response_body = response.json()
-        print(response.status_code)
+        res_status = response.status_code
+        if res_status == 200:
+            print(response.status_code)
+            response_body = response.json()
+            #print(response_body)
         #print(response_body['status'])
