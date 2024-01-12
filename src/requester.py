@@ -55,51 +55,30 @@ class Requester():
         print(response.status_code)
         print(response.json())
 
-    def get_temps(self):
-        url = 'https://192.168.3.50/PIC6/api/menu/getmenutable'
-        payload = {
-                    "token": self.token,
-                    "path": "TEMP",
-                    "type": "service_data",
-                    "POC_table": "0"
-                }
-        response = self.session.post(url, json=payload)
-        print(response.json())
-
-    def navigate(self):
-        url = 'https://192.168.3.50/PIC6/api/user_navigation_history/savenavigationhistory'
-        payload = {"fromPage":"Home - CARRIER 30XW","toPage":"Main Menu","userAccessLevel":"NONE","timestamp":1702820981960,"currentMobileOS":"unknown","token":self.token}
-        response = self.session.post(url, json=payload)
-        print(response.status_code)
-    
-
-    def navigate2(self):
-        url = 'https://192.168.3.50/PIC6/api/user_navigation_history/savenavigationhistory'
-        payload = {"fromPage":"Main Menu","toPage":"Menu_Target_Status_Table","userAccessLevel":"NONE","timestamp":1702820983861,"currentMobileOS":"unknown","token":self.token}
-        response = self.session.post(url, json=payload)
-        print(response.status_code)
-
     def monitoring(self):
         url = 'https://192.168.3.50/PIC6/api/monitor_tasks/getmonitoringtaskupdates'
         payload = {"token": self.token}
         response = self.session.post(url, json=payload)
-        print(response.status_code)
+        if response.status_code == 200:
+            print(response.status_code)
+            return response.json()
+        return None
     
     def get_point_value(self):
         url = 'https://192.168.3.50/PIC6/api/point_value/getpointvalue'
         payload = {
             "pathlist":[
-                {"widgetType":"PointValue","path":"db/Ui_Alias_COND_EWT/present-value"},
                 {"widgetType":"PointValue","path":"db/Ui_Syn_Msg_Bottom/description"},
-                {"widgetType":"PointValue","path":"db/Ui_Alias_CTRL_PNT/present-value"},
-                {"widgetType":"PointValue","path":"db/Ui_Alias_OAT/present-value"},
                 {"widgetType":"PointValue","path":"db/Ui_Alias_CAP_T/present-value"},
-                {"widgetType":"PointValue","path":"db/Ui_Alias_unit_typ/present-value"},
-                {"widgetType":"PointValue","path":"db/CTRLID_DEV_LOCATION/active-text"},
-                {"widgetType":"PointValue","path":"db/Ui_Alias_FLOW_SW/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_COND_EWT/present-value"},
                 {"widgetType":"PointValue","path":"db/Ui_Alias_EWT/present-value"},
                 {"widgetType":"PointValue","path":"db/Ui_Alias_LWT/present-value"},
                 {"widgetType":"PointValue","path":"db/Ui_Alias_COND_LWT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_CTRL_PNT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_OAT/present-value"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_unit_typ/present-value"},
+                {"widgetType":"PointValue","path":"db/CTRLID_DEV_LOCATION/active-text"},
+                {"widgetType":"PointValue","path":"db/Ui_Alias_FLOW_SW/present-value"},
                 {"widgetType":"PointValue","path":"db/Ui_runtest_ip/active-text"},
                 {"widgetType":"PointValue","path":"db/Ui_runtest_mask/active-text"},
                 {"widgetType":"PointValue","path":"db/Ui_runtest_eth/active-text"}],
@@ -107,26 +86,32 @@ class Requester():
         }
         # handle response, print it out in a custom format
         response = self.session.post(url, json=payload)
-        res_status = response.status_code
-        if res_status == 200:
+        print(response.status_code)
+        if response.status_code == 200:
             response_body = response.json()
             values = response_body['pathlist']
-            for val in values:
-                print(val)
-            print(response_body['status'])
+            #print(values)
+            #print(response_body['status'])
             return values
         return None
 
     def confirm_alarms(self):
-        print("token: ", self.token)
+        #print("token: ", self.token)
         url = 'https://192.168.3.50/PIC6/api/tabular_data/savetabulardatainfo'
         payload = {"datasource":"ALARMRST","type":"service_data","data":[{"path":"ccn/ALARMRST/0","value":"1"}],"token":self.token}
         response = self.session.post(url, json=payload)
-        res_status = response.status_code
-        if res_status == 200:
-            print(response.status_code)
-            response_body = response.json()
-            #print(response_body)
-            return response_body
-        #print(response_body['status'])
+        print(response.status_code)
+        if response.status_code == 200:
+            return response.json()
         return None
+    
+    def get_alarms(self):
+        url = 'https://192.168.3.50/PIC6/api/tabular_data/gettabulardatainfo'
+        payload = {
+            "token":self.token,
+            "path":"ALARMRST",
+            "type":"service_data",
+            "POC_table":"0"}
+        response = self.session.post(url, json=payload)
+        print(response.status_code)
+        return response.json()

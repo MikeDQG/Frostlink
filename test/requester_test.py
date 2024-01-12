@@ -28,4 +28,10 @@ def test2():
         print("except")
     r3.logout()
 
-test2()
+def test3():
+    '''getPointValue'''
+    r2 = requester.Requester()
+    print(r2.get_alarms())
+    r2.logout()
+
+test3()
