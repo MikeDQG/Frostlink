@@ -1,0 +1,20 @@
+logging ko dobis podatke (requester) in ko posljes podatke (db)
+
+nivoji logging-a:
+- fatal (ustavitev prog.)
+- error (morda se program ustavi potem)
+- warning 
+- info (obvestilo)
+- debug (uporabno v primeru razhroscevanja)
+- debug_verbose (debug, ampak ful podatkov, veliko)
+
+default warning in gor
+
+
+Polskava -> MZ hladilnik -> vikend -> Poljcane -> MZ hladilnik, zmrzovalnik -> vikend -> Polskava
+
+MZ - Polskava hladilnik
+
+vikend Polskava
+
+vikend Poljcane

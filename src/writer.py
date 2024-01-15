@@ -1,12 +1,11 @@
-import db_object
+#import db_object
+from collections import namedtuple
 
 class Writer():
     def __init__(self):
-        self.db_object = db_object.DB_Object()
+        #self.db_object = db_object.DB_Object()
         print("Writer init")
 
-    def write(self):
-        self.db_object.to_list()
-        print("Writer write ", self.db_object.list)
-
-        self.db_object.list = []
+    def write(self, namedtuple_input):
+       print("Writer write ", namedtuple_input)
+       """ following: send to DB, each value """

@@ -1,3 +1,4 @@
+from collections import namedtuple
 import retriever
 import db_object
 import writer
@@ -7,7 +8,7 @@ class Reporter():
 
     def __init__(self):
         self.retriever = retriever.Retriever()
-        self.db_object = db_object.DB_Object()
+        self.Values_tuple = namedtuple('Values', ['message', 'capacity', 'temp1', 'temp2', 'temp3', 'temp4', 'active_alarm_count', 'alarm_name'])
         self.writer = writer.Writer()
         self.listener = listener.Listener()
     
@@ -19,11 +20,9 @@ class Reporter():
     def update(self):
         # get active alarms count and report it
         # retrieve data and write it
-        self.retriever.get_values()
-        self.db_object = self.retriever.db_send_object
+        self.db_object = self.retriever.get_values()
 
     def write(self):
-        self.writer.db_object = self.db_object
         self.writer.write()
     
     def listen(self):

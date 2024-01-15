@@ -1,3 +1,4 @@
+from collections import namedtuple
 import requester
 import db_object
 
@@ -9,7 +10,7 @@ class Retriever():
         self.alarms = None
         self.values = None
         self.monitoring_updates = None
-        self.db_send_object = db_object.DB_Object()
+        self.Values_tuple = namedtuple('Values', ['message', 'capacity', 'temp1', 'temp2', 'temp3', 'temp4', 'active_alarm_count', 'alarm_name'])
 
     def get_values(self):
         '''getPointValue'''
@@ -23,8 +24,10 @@ class Retriever():
             self.alarms = self.get_alarms()
             #print(self.alarms)
         """ update db_send_object """
-        self.update_values()
-        self.save_db_values()
+        self._update_values()
+        self._save_db_values()
+
+        return self.Values_tuple
 
     def confirm_alarms(self):
         '''confirm alarms'''
@@ -45,22 +48,22 @@ class Retriever():
         self.req.logout()
         print("Session ended")
 
-    def update_values(self):
+    def _update_values(self):
         temporary_values = []
         for value in self.values:
             value = { "path": value['path'], "value": value['value'] }
             temporary_values.append(value)
         self.values = temporary_values
 
-    def save_db_values(self):
+    def _save_db_values(self):
         def f_to_c(f):      # Fahrenheit to Celsius
             c = f - 32.0
             return c * 5 / 9
-        self.db_send_object.message = self.values[0]['value']
-        self.db_send_object.capacity = int(self.values[1]['value'])
-        self.db_send_object.temp1 = f_to_c(float(self.values[2]['value']))
-        self.db_send_object.temp2 = f_to_c(float(self.values[3]['value']))
-        self.db_send_object.temp3 = f_to_c(float(self.values[4]['value']))
-        self.db_send_object.temp4 = f_to_c(float(self.values[5]['value']))
-        self.db_send_object.active_alarm_count = int(self.monitoring_updates['active_alarm_count'])
-        self.db_send_object.alarm_name = None
+        self.Values_tuple.message = self.values[0]['value']
+        self.Values_tuple.capacity = int(self.values[1]['value'])
+        self.Values_tuple.temp1 = f_to_c(float(self.values[2]['value']))
+        self.Values_tuple.temp2 = f_to_c(float(self.values[3]['value']))
+        self.Values_tuple.temp3 = f_to_c(float(self.values[4]['value']))
+        self.Values_tuple.temp4 = f_to_c(float(self.values[5]['value']))
+        self.Values_tuple.active_alarm_count = int(self.monitoring_updates['active_alarm_count'])
+        self.Values_tuple.alarm_name = None
