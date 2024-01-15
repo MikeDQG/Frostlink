@@ -2,7 +2,7 @@
 
 class Listener():
     def __init__(self):
-        self.change = None
+        self.confirm_alarms = None
         print("Listener init")
 
     def listen(self):

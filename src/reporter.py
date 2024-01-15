@@ -23,11 +23,11 @@ class Reporter():
         self.db_object = self.retriever.get_values()
 
     def write(self):
-        self.writer.write()
+        self.writer.write(self.Values_tuple)
     
     def listen(self):
         self.listener.listen()
-        if self.listener.change != None:
+        if self.listener.confirm_alarms != None:
             print("Incomplete code: Reporter: 31")
             """ torej tukaj moramo resetirat alarme """
             self.retriever.confirm_alarms()
