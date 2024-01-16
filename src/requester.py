@@ -1,4 +1,4 @@
-from requests import Session
+from requests import Response, Session
 import urllib3
 from urllib3.util.ssl_ import create_urllib3_context
 from urllib3 import PoolManager, disable_warnings
@@ -33,14 +33,24 @@ class Requester():
 
     def get_cookie(self):
         self.session.get('https://192.168.3.50/PIC6/')
+    
+    def _any_request(self, url, payload) -> Response:
+        response = self.session.post(url, json=payload)
+        if response.status_code != 200:
+            self.logout()
+            self.token = self.login()
+        response = self.session.post(url, json=payload)
+        if response.status_code != 200:
+            raise Exception("Connection failed")
+        return response
 
     def login(self):
         url = 'https://192.168.3.50/PIC6/api/auth/login'
-        send_object = {
+        payload = {
             "password": "0011",
             "username": "user"
         }
-        response = self.session.post(url, json=send_object)
+        response = self.session.post(url, json=payload)
         data = response.json()
         print(data)
         print(response.status_code)
@@ -58,11 +68,10 @@ class Requester():
     def monitoring(self):
         url = 'https://192.168.3.50/PIC6/api/monitor_tasks/getmonitoringtaskupdates'
         payload = {"token": self.token}
-        response = self.session.post(url, json=payload)
-        if response.status_code == 200:
-            print(response.status_code)
-            return response.json()
-        return None
+        response = self._any_request(url=url, payload=payload)
+        print(response.status_code)
+        return response.json()
+        
     
     def get_point_value(self):
         url = 'https://192.168.3.50/PIC6/api/point_value/getpointvalue'
@@ -85,25 +94,19 @@ class Requester():
             "token": self.token
         }
         # handle response, print it out in a custom format
-        response = self.session.post(url, json=payload)
+        response = self._any_request(url=url, payload=payload)
         print(response.status_code)
-        if response.status_code == 200:
-            response_body = response.json()
-            values = response_body['pathlist']
-            #print(values)
-            #print(response_body['status'])
-            return values
-        return None
+        return response.json()
+        
 
     def confirm_alarms(self):
         #print("token: ", self.token)
         url = 'https://192.168.3.50/PIC6/api/tabular_data/savetabulardatainfo'
         payload = {"datasource":"ALARMRST","type":"service_data","data":[{"path":"ccn/ALARMRST/0","value":"1"}],"token":self.token}
-        response = self.session.post(url, json=payload)
+        response = self._any_request(url=url, payload=payload)
         print(response.status_code)
-        if response.status_code == 200:
-            return response.json()
-        return None
+        return response.json()
+        
     
     def get_alarms(self):
         url = 'https://192.168.3.50/PIC6/api/tabular_data/gettabulardatainfo'
@@ -112,6 +115,6 @@ class Requester():
             "path":"ALARMRST",
             "type":"service_data",
             "POC_table":"0"}
-        response = self.session.post(url, json=payload)
+        response = self._any_request(url=url, payload=payload)
         print(response.status_code)
         return response.json()
