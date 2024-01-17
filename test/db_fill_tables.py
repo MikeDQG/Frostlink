@@ -17,7 +17,8 @@ try:
     for x in mycursor:
         print(x)
     '''
-    #mycursor.execute("CREATE TABLE values (id INT AUTO_INCREMENT PRIMARY_KEY,handshake INT NOTNULL,message VARCHAR(45),capacity INT NOTNULL,temp1 FLOAT NOTNULL,temp2 FLOAT NOTNULL,temp3 FLOAT NOTNULL,temp4 FLOAT NOTNULL,active_alarm_count INT NOTNULL)")
+    ''' '''
+    #mycursor.execute("CREATE TABLE values (id INT AUTO_INCREMENT PRIMARY_KEY, handshake INT NOT NULL, message VARCHAR(45), capacity INT NOT NULL, temp1 FLOAT(7, 4) NOT NULL, temp2 FLOAT(7, 4) NOT NULL, temp3 FLOAT(7, 4) NOT NULL, temp4 FLOAT(7, 4) NOT NULL, active_alarm_count INT NOT NULL);")
     mycursor.execute("SHOW TABLES")
     for x in mycursor:
         print(x)
