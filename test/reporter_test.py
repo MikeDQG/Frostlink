@@ -6,20 +6,17 @@ import requester
 
 def test0():
     rep1 = reporter.Reporter()
-    try:
-        rep1.main()
-        '''rep1.main()
-        rep1.main()
-        rep1.main()
-        rep1.main()
-        rep1.main()
-        rep1.main()
-        rep1.main()'''
-    except Exception as exec:
-        print(exec)
     
-    finally:
-        rep1.retriever.end_session()
+    i = ''
+    while i != 'e':
+        try:
+            rep1.main()
+        except Exception as exec:
+            print(exec)
+
+        i = input(print("next command (refresh - r, exit - e): "))
+    
+    rep1.retriever.end_session()
 
 
 test0()
