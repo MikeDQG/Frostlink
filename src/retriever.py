@@ -1,6 +1,7 @@
 from collections import namedtuple
 import requester
 import db_object
+import pasice
 
 # if testing doesn't work, try this in terminal: $env:PYTHONPATH="src/"
 
@@ -25,7 +26,6 @@ class Retriever():
             #print('active_alarm_count > 0')
             self.alarms = self.get_alarms()
             #print(self.alarms)
-        """ update db_send_object """
         #print('29: values saved 2')
         self._update_values()
         self._save_db_values()
@@ -64,9 +64,17 @@ class Retriever():
         def f_to_c(f):      # Fahrenheit to Celsius
             c = f - 32.0
             return c * 5 / 9
+        def msg_to_slo(msg):
+            dictionary = {
+                "Local Off": "Izklopljeno",
+                "Stopping": "Zaustavljanje",
+                "Local On": "Vklopljeno",
+                "Local    Running": "Vklopljeno"
+            }
+            return dictionary[msg]
         #print('values getting saved')
         temporary_val_list = []
-        temporary_val_list.append(self.values[0]['value'])
+        temporary_val_list.append(msg_to_slo(self.values[0]['value']))
         temporary_val_list.append(int(self.values[1]['value']))
         temporary_val_list.append(f_to_c(float(self.values[2]['value'])))
         temporary_val_list.append(f_to_c(float(self.values[3]['value'])))

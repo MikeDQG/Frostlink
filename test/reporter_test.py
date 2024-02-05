@@ -14,7 +14,7 @@ def test0():
         except Exception as exec:
             print(exec)
 
-        i = input(print("next command (refresh - r, exit - e): "))
+        i = input("next command (refresh - r, exit - e): ")
     
     rep1.retriever.end_session()
 
