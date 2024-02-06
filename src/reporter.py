@@ -1,6 +1,7 @@
 import retriever
 import writer
 import listener
+import logging
 
 class Reporter():
 
@@ -8,6 +9,7 @@ class Reporter():
         self.retriever = retriever.Retriever()
         self.writer = writer.Writer()
         self.listener = listener.Listener()
+        logging.debug("Reporter initialized")
     
     def main(self):
         #self.update()

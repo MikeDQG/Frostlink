@@ -1,5 +1,6 @@
 from collections import namedtuple
 import mysql.connector
+import logging
 
 class Writer():
     def __init__(self):
@@ -10,7 +11,7 @@ class Writer():
             password="bamt_prektikum",
             database="frostlink"
             )
-        print("Writer init")
+        logging.debug("Writer initialized")
 
     def write(self, namedtuple_input):
        #self.namedtuple_output = namedtuple_input

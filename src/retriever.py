@@ -1,7 +1,6 @@
 from collections import namedtuple
 import requester
-import db_object
-import pasice
+import logging
 
 # if testing doesn't work, try this in terminal: $env:PYTHONPATH="src/"
 
@@ -12,6 +11,7 @@ class Retriever():
         self.values = None
         self.monitoring_updates = None
         self.Values_tuple = namedtuple('Values', ['message', 'capacity', 'temp1', 'temp2', 'temp3', 'temp4', 'active_alarm_count', 'alarm_name'])
+        logging.debug("Retriever initialized")
         
     def get_values(self):
         '''getPointValue'''

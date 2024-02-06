@@ -4,13 +4,17 @@ from urllib3.util.ssl_ import create_urllib3_context
 from urllib3 import PoolManager, disable_warnings
 from requests.adapters import HTTPAdapter
 disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+import logging
 
 
 class Requester():
     def __init__(self):
         self.session = self.get_unverified_session()
+        logging.debug("get_unverified_session")
         self.get_cookie()
+        logging.debug("get_cookie")
         self.token = self.login()
+        logging.debug("login")
 
 
     def get_unverified_session(self) -> Session:
@@ -37,11 +41,17 @@ class Requester():
     def _any_request(self, url, payload) -> Response:
         response = self.session.post(url, json=payload)
         if response.status_code != 200:
+            logging.warning(response.status_code, response.json())
+            logging.info(response)
             self.logout()
             self.token = self.login()
         response = self.session.post(url, json=payload)
+        logging.info("url:", url, " status:", response.status_code)
+        logging.debug("payload:", payload)
         if response.status_code != 200:
+            logging.exception("Connection failed;", response.status_code, response)
             raise Exception("Connection failed")
+        logging.debug(response.json())
         return response
 
     def login(self):
@@ -54,8 +64,10 @@ class Requester():
         data = response.json()
         print(data)
         print(response.status_code)
+        logging.info(data)
+        logging.info(response.status_code)
         
-        return str(data[0]['token']) # str(data['data'])
+        return str(data[0]['token'])
       
 
     def logout(self):
@@ -64,12 +76,15 @@ class Requester():
         response = self.session.post(url, json=payload)
         print(response.status_code)
         print(response.json())
+        logging.info(response.status_code)
+        logging.debug(response.json())
 
     def monitoring(self):
         url = 'https://192.168.3.50/PIC6/api/monitor_tasks/getmonitoringtaskupdates'
         payload = {"token": self.token}
         response = self._any_request(url=url, payload=payload)
         print(response.status_code)
+        logging.info(response.status_code)
         return response.json()
         
     
@@ -93,18 +108,14 @@ class Requester():
                 {"widgetType":"PointValue","path":"db/Ui_runtest_eth/active-text"}],
             "token": self.token
         }
-        # handle response, print it out in a custom format
         response = self._any_request(url=url, payload=payload)
-        print(response.status_code)
         return response.json()
         
 
     def confirm_alarms(self):
-        #print("token: ", self.token)
         url = 'https://192.168.3.50/PIC6/api/tabular_data/savetabulardatainfo'
         payload = {"datasource":"ALARMRST","type":"service_data","data":[{"path":"ccn/ALARMRST/0","value":"1"}],"token":self.token}
         response = self._any_request(url=url, payload=payload)
-        print(response.status_code)
         return response.json()
         
     
@@ -116,5 +127,4 @@ class Requester():
             "type":"service_data",
             "POC_table":"0"}
         response = self._any_request(url=url, payload=payload)
-        print(response.status_code)
         return response.json()
