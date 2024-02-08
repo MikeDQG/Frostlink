@@ -1,12 +1,7 @@
 #
 *.log
-#
-**/log_dump
-#
-**/log_tests/build
-#
-**/log_tests/dist
-#
+**/log_dump/
+**/log_tests/build/
+**/log_tests/dist/
 **/log_tests/*.spec
-#
-**/__pycache__
+**/__pycache__/

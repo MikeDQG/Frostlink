@@ -46,10 +46,10 @@ class Requester():
             self.logout()
             self.token = self.login()
         response = self.session.post(url, json=payload)
-        logging.info("url:", url, " status:", response.status_code)
-        logging.debug("payload:", payload)
+        logging.info("url: " + url + " status: " + str(response.status_code))
+        logging.debug(str("payload: " + str(payload)))
         if response.status_code != 200:
-            logging.exception("Connection failed;", response.status_code, response)
+            logging.exception("Connection failed; " + str(response.status_code) + str(response))
             raise Exception("Connection failed")
         logging.debug(response.json())
         return response

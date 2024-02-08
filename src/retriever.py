@@ -69,7 +69,8 @@ class Retriever():
                 "Local Off": "Izklopljeno",
                 "Stopping": "Zaustavljanje",
                 "Local On": "Vklopljeno",
-                "Local    Running": "Vklopljeno"
+                "Local    Running": "Vklopljeno",
+                "Remote   Off": "Izklopljeno"
             }
             return dictionary[msg]
         #print('values getting saved')
