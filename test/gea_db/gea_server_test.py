@@ -23,7 +23,7 @@ try:
     cursor = conn.cursor()
 
     # Execute SQL query
-    cursor.execute("SHOW TABLES")
+    cursor.execute("SELECT @@version;")
     row = cursor.fetchone()
     logging.debug(row)
     logging.debug(row[0])
