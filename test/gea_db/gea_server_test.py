@@ -1,7 +1,7 @@
 import pyodbc
 import logging
 
-logging.basicConfig(filename='dbsvr_test.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
+logging.basicConfig(filename='dbsrvrtst.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 
 # Connection string
 server = r'TOGEA15\SQLEXPRESS' # Replace 'your_server_name' with your server name
@@ -13,6 +13,8 @@ logging.debug(server, database, username, password)
 
 conn_str = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 logging.debug(conn_str)
+
+print(input("input1: ")) # stoopid test
 
 try:
     # Connect to the database
@@ -55,3 +57,5 @@ cursor.execute("SHOW TABLES")
 x = cursor.fetchall()
 cnxn.close()
 print(x)"""
+
+print(input("input2: ")) # stoopid test #2
