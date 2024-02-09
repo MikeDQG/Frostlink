@@ -5,7 +5,7 @@ logging.basicConfig(filename='dbsrvrtst.log', filemode='w', encoding='utf-8', le
 logging.info("Start")
 
 # Connection string
-server = r'TOGEA15\SQLEXPRESS' # Replace 'your_server_name' with your server name
+server = 'TOGEA15' # Replace 'your_server_name' with your server name
 database = 'Energetika' # Replace 'your_database_name' with your database name
 username = 'sa' # Replace 'your_username' with your SQL Server username
 password = 'togea' # Replace 'your_password' with your SQL Server password
