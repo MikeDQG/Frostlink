@@ -23,11 +23,13 @@ try:
     cursor = conn.cursor()
 
     # Execute SQL query
-    cursor.execute("SELECT @@version;")
-    row = cursor.fetchone()
+    '''cursor.execute("SELECT @@version;")'''
+    cursor.execute("UPDATE Energetika.values SET Utrip = 1, Pasica = 'Remote   Off', NovaPasica = 1, Kapaciteta = 0, GlikolVen = 12.34, GlikolNot = 12.35, VodaVen = 12.35, VodaNot = 12.35 WHERE id = 1")
+    
+    '''row = cursor.fetchone()
     logging.debug(row)
     logging.debug(row[0])
-    print(row[0])  # Print the result
+    print(row[0])  # Print the result'''
 
 except Exception as e:
     print(f"Error: {str(e)}")
