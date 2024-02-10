@@ -66,9 +66,14 @@ class Retriever():
             return c * 5 / 9
         def msg_to_slo(msg):
             dictionary = {
-                "Local Off": "Izklopljeno",
+                "Local  Off": "Izklopljeno",
+                "Local   Off": "Izklopljeno",
+                "Local    Off": "Izklopljeno",
                 "Stopping": "Zaustavljanje",
                 "Local On": "Vklopljeno",
+                "Local  On": "Vklopljeno",
+                "Local   On": "Vklopljeno",
+                "Local    On": "Vklopljeno",
                 "Local    Running": "Vklopljeno",
                 "Remote   Off": "Izklopljeno"
             }

@@ -1,7 +1,7 @@
 import pyodbc
 import logging
 
-logging.basicConfig(filename='dbsrvrtst.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
+logging.basicConfig(filename='dbsrvrtst.log', filemode='a', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 logging.info("Start")
 
 # Connection string
@@ -15,7 +15,7 @@ password = 'togea' # Replace 'your_password' with your SQL Server password
 conn_str = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 logging.debug(conn_str)
 
-print(input("input1: ")) # stoopid test
+print(input("press any key to start ")) # stoopid test
 
 try:
     # Connect to the database
@@ -24,8 +24,28 @@ try:
 
     # Execute SQL query
     '''cursor.execute("SELECT @@version;")'''
-    cursor.execute("UPDATE RafHA_Komun SET Utrip = 1, Pasica = 'Remote   Off', NovaPasica = 1, Kapaciteta = 0, GlikolVen = 12.34, GlikolNot = 12.35, VodaVen = 12.35, VodaNot = 12.35")
+    #cursor.execute("UPDATE RafHA_Komun SET Utrip = 1")
     
+    # Update query
+    update_query = """
+    UPDATE RafHA_Komun
+    SET Utrip = ?
+    """
+
+    # Parameters for the update query
+    new_value1 = 1
+    #new_value2 = 'new_value2'
+    #condition_value = 'condition_value'
+    logging.info(update_query)
+    logging.info(new_value1)
+
+    # Execute the update query
+    #cursor.execute(update_query, (new_value1, new_value2, condition_value))
+    cursor.execute(update_query, (new_value1))
+
+    # Commit the transaction
+    conn.commit()
+
     '''row = cursor.fetchone()
     logging.debug(row)
     logging.debug(row[0])
@@ -62,4 +82,4 @@ x = cursor.fetchall()
 cnxn.close()
 print(x)"""
 
-print(input("input2: ")) # stoopid test #2
+print(input("press any key to close")) # stoopid test #2
