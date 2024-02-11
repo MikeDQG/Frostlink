@@ -1,0 +1,9 @@
+02/11/2024 22:27:29 main DEBUG Main initialized
+02/11/2024 22:28:44 main ERROR 
+Traceback (most recent call last):
+  File "c:\Users\mikeg\OneDrive\Namizje\SEVATE\Frostlink\src\main.py", line 14, in __init__
+    self.run()
+  File "c:\Users\mikeg\OneDrive\Namizje\SEVATE\Frostlink\src\main.py", line 32, in run
+    t = time.time()
+        ^^^^^^^^^^^
+KeyboardInterrupt

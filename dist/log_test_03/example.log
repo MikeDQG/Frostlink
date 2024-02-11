@@ -1,0 +1,6 @@
+02/08/2024 09:53:58 logger_test DEBUG This message should go to the log file
+02/08/2024 09:54:01 logger_test INFO kjdsgh
+02/08/2024 09:54:01 logger_test INFO So should this
+02/08/2024 09:54:01 logger_test WARNING And this, too
+02/08/2024 09:54:01 logger_test ERROR And non-ASCII stuff, too, like Øresund and Malmö
+02/08/2024 09:54:01 sec_log_test CRITICAL well well well
