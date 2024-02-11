@@ -19,28 +19,9 @@ class Writer():
 
     def write(self, namedtuple_input):
         logging.debug("Writer write ", namedtuple_input)
-        """ following: send to DB, each value """
 
         def update():
-            mycursor = self.mydb.cursor()
-            sql = "UPDATE frostlink.values SET message = %s, capacity = %s, temp1 = %s, temp2 = %s, temp3 = %s, temp4 = %s, active_alarm_count = %s WHERE id = 1"
-            val = (namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4, namedtuple_input.active_alarm_count)
-            mycursor.execute(sql, val)
-            self.mydb.commit()
-            logging.debug(mycursor.rowcount, "was updated.")
-
-        def select():
-            mycursor = self.mydb.cursor()
-            mycursor.execute("SELECT * FROM frostlink.values")
-            myresult = mycursor.fetchall()
-            for x in myresult:
-                logging.debug(x)
-        
-        try:
-            # Connect to the database
-            self.conn = pyodbc.connect(self.conn_str)
-            self.cursor = self.conn.cursor()
-
+            
             update_query = """
             UPDATE RafHA_Komun
             SET Utrip = ?,
@@ -51,28 +32,31 @@ class Writer():
             VodaVen = ?,
             VodaNot = ?
             """
+            #condition_value = 'condition_value'
 
-            Utrip = 1
-            Pasica = 'new_value2'
-            Kapaciteta = 1
-            GlikolVen = 1
-            GlikolNot = 1
-            VodaVen = 1
-            VodaNot = 1
-
-            condition_value = 'condition_value'
-
-            # Execute the update query
-            #cursor.execute(update_query, (new_value1, new_value2, condition_value))
             self.cursor.execute(update_query, (namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))
 
-            # Commit the transaction
             self.conn.commit()
 
-            '''row = self.cursor.fetchone()
-            logging.debug(row)
-            logging.debug(row[0])
-            print(row[0])  # Print the result'''
+            logging.debug("Rowcount")
+            logging.debug(self.cursor.rowcount)
+
+        def select():
+            data = self.cursor.fetchall()
+            try:
+                for d in data:
+                    logging.debug(d)
+            except Exception as exec:
+                logging.info(exec)
+                logging.warning("DB selected data not a list")
+                logging.debug(data)
+        
+        try:
+            self.conn = pyodbc.connect(self.conn_str)
+            self.cursor = self.conn.cursor()
+
+            update()
+            select()
 
         except Exception as e:
             print(f"Error: {str(e)}")
@@ -83,7 +67,5 @@ class Writer():
             if 'conn' in locals():
                 self.conn.close()
 
-        update()
-        select()
 
        
