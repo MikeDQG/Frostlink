@@ -1,21 +1,19 @@
 
 import logging
-#import reporter
-'''
+import reporter
 import time
-'''
+
 
 class Main():
     def __init__(self):
         print(input("press any key to start ")) # stoopid test
-        #logging.basicConfig(filename='./src/logs/example.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
         logging.basicConfig(filename='final_main_1.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
         logging.info("starting up")
-        #self.reporter = reporter.Reporter()
+        self.reporter = reporter.Reporter()
         logging.debug("Main initialized")
         #self.reporter.retriever.end_session()
-        print(input("press any key to close")) # stoopid test #2
-        '''try:
+        #print(input("press any key to close")) # stoopid test #2
+        try:
             self.run()
         except KeyboardInterrupt as KI:
             logging.exception(KI)
@@ -47,6 +45,6 @@ class Main():
         except Exception as e:
             logging.exception(e)
             self.reporter.retriever.end_session()
-'''
+
 
 m = Main()
