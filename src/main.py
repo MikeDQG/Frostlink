@@ -1,7 +1,7 @@
 
 import logging
-'''
 import reporter
+'''
 import time
 '''
 
@@ -10,9 +10,10 @@ class Main():
         print(input("press any key to start ")) # stoopid test
         #logging.basicConfig(filename='./src/logs/example.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
         logging.basicConfig(filename='final_main_1.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
-        '''self.reporter = reporter.Reporter()
+        self.reporter = reporter.Reporter()
         logging.debug("Main initialized")
-        try:
+        self.reporter.retriever.end_session()
+        '''try:
             self.run()
         except KeyboardInterrupt as KI:
             logging.exception(KI)
