@@ -25,7 +25,7 @@ class Reporter():
 
     def write(self, write_tuple):
         logging.info("writing")
-        self.writer.write(write_tuple)
+        #self.writer.write(write_tuple)
     
     def listen(self):
         self.listener.listen()

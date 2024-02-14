@@ -7,14 +7,14 @@ class Main():
     def __init__(self):
         #logging.basicConfig(filename='./src/logs/example.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
         logging.basicConfig(filename='final_main_3.log', filemode='a', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
-        #self.reporter = reporter.Reporter()
+        self.reporter = reporter.Reporter()
         logging.debug("Main initialized")
         print(input("press any key to start ")) # stoopid test
         try:
             self.run()
         except KeyboardInterrupt as KI:
             logging.exception(KI)
-            #self.reporter.retriever.end_session()
+            self.reporter.retriever.end_session()
 
     def run(self):      # timer logic
         relative_time = 30
@@ -38,9 +38,10 @@ class Main():
         try:
             print("joke")
             logging.info("joke")
-            #self.reporter.main()
+            self.reporter.main()
         except Exception as e:
             logging.exception(e)
+            self.reporter.retriever.end_session()
 
 
 m = Main()

@@ -1,6 +1,7 @@
 from collections import namedtuple
 import requester
 import logging
+import json
 
 # if testing doesn't work, try this in terminal: $env:PYTHONPATH="src/"
 
@@ -75,9 +76,22 @@ class Retriever():
                 "Local   On": "Vklopljeno",
                 "Local    On": "Vklopljeno",
                 "Local    Running": "Vklopljeno",
-                "Remote   Off": "Izklopljeno"
+                "Remote   Off": "Izklopljeno",
+                "Remote   Running": "Daljinski vklop"
             }
-            return dictionary[msg]
+            
+            try:
+                #with open('../../src/payloads/pasice.json', 'r') as file:
+                with open('../../pasice.json', 'r') as file:
+                    data = json.load(file)
+                return data[msg]
+            except Exception as some_exception:
+                logging.warning(some_exception)
+            try:
+                return dictionary[msg]
+            except Exception as another_exception:
+                logging.warning(another_exception)
+                return msg
         #print('values getting saved')
         temporary_val_list = []
         temporary_val_list.append(msg_to_slo(self.values[0]['value']))
