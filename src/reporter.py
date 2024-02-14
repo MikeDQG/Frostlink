@@ -19,10 +19,12 @@ class Reporter():
     def update(self):
         # get active alarms count and report it
         # retrieve data and write it
+        logging.info("updating")
         return self.retriever.get_values()
         #print('values retrieved')
 
     def write(self, write_tuple):
+        logging.info("writing")
         self.writer.write(write_tuple)
     
     def listen(self):
