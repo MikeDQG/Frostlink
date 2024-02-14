@@ -51,6 +51,14 @@ def update():
     logging.debug(row[0])
     print(row[0])  # Print the result'''
 
+def select():
+    query_string = "SELECT * FROM RafHA_Komun;"
+    cursor.execute(query_string)
+    logging.debug(query_string)
+    data = cursor.fetchall()
+    print(data)
+    logging.info(data)
+
 try:
     # Connect to the database
     conn = pyodbc.connect(conn_str)
@@ -58,6 +66,7 @@ try:
 
     #select_version()
     update()
+    select()
     '''
     s = input("press any 1 to select ")
     if s == "1":
