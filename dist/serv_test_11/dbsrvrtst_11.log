@@ -1,4 +1,0 @@
-02/14/2024 18:19:11 gea_server_test INFO Start
-02/14/2024 18:19:11 gea_server_test DEBUG DRIVER={SQL Server};SERVER=TOGEA15;DATABASE=Energetika;UID=sa;PWD=togea
-02/14/2024 18:19:35 gea_server_test ERROR ('HYT00', '[HYT00] [Microsoft][ODBC SQL Server Driver]Login timeout expired (0) (SQLDriverConnect)')
-02/14/2024 18:19:35 gea_server_test DEBUG Done

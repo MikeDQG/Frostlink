@@ -56,7 +56,8 @@ try:
     conn = pyodbc.connect(conn_str)
     cursor = conn.cursor()
 
-    select_version()
+    #select_version()
+    update()
     '''
     s = input("press any 1 to select ")
     if s == "1":
