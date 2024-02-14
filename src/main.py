@@ -1,6 +1,6 @@
 
 import logging
-import reporter
+#import reporter
 '''
 import time
 '''
@@ -14,6 +14,7 @@ class Main():
         #self.reporter = reporter.Reporter()
         logging.debug("Main initialized")
         #self.reporter.retriever.end_session()
+        print(input("press any key to close")) # stoopid test #2
         '''try:
             self.run()
         except KeyboardInterrupt as KI:
