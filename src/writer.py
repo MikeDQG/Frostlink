@@ -24,7 +24,7 @@ class Writer():
             
             update_query = """
             UPDATE RafHA_Komun
-            SET Utrip = ?"""""",
+            SET Utrip = ?,
             Pasica = ?,
             Kapaciteta = ?,
             GlikolVen = ?,
@@ -32,11 +32,13 @@ class Writer():
             VodaVen = ?,
             VodaNot = ?
             """
+            UTRIP = 1
 
             logging.info(update_query)
             #condition_value = 'condition_value'
 
-            self.cursor.execute(update_query, (namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))
+            self.cursor.execute(update_query, (UTRIP, namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))
+            #self.cursor.execute(update_query, (namedtuple_input.message))
 
             self.conn.commit()
 
