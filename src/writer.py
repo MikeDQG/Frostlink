@@ -18,7 +18,8 @@ class Writer():
         logging.debug("Writer initialized")
 
     def write(self, namedtuple_input):
-        logging.debug("Writer write ", namedtuple_input)
+        logging.debug("Writer write ")
+        logging.debug(namedtuple_input)
 
         def update():
             
@@ -67,7 +68,7 @@ class Writer():
             self.conn = pyodbc.connect(self.conn_str)
             self.cursor = self.conn.cursor()
 
-            select_version()
+            #select_version()
             update()
             select()
 
