@@ -6,4 +6,4 @@ class Listener():
         logging.debug("Listener initialized")
 
     def listen(self):
-        print("Listener listen")
+        logging.debug("Listener listen")

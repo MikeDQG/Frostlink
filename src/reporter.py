@@ -14,7 +14,7 @@ class Reporter():
     def main(self):
         #self.update()
         self.write(self.update())
-        self.listen()
+        #self.listen()
     
     def update(self):
         # get active alarms count and report it

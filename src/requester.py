@@ -83,7 +83,7 @@ class Requester():
         url = 'https://192.168.3.50/PIC6/api/monitor_tasks/getmonitoringtaskupdates'
         payload = {"token": self.token}
         response = self._any_request(url=url, payload=payload)
-        print(response.status_code)
+        #print(response.status_code)
         logging.info(response.status_code)
         return response.json()
         
