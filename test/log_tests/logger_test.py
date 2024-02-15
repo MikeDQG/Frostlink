@@ -1,18 +1,8 @@
 import logging
-import sec_log_test as sec_log_test
+import time
 
-logging.basicConfig(filename='example.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
-logging.debug('This message should go to the log file')
-x = input("Input x")
-print(x)
-logging.info(x)
-logging.info('So should this')
-logging.warning('And this, too')
-logging.error('And non-ASCII stuff, too, like Øresund and Malmö')
+log_string = str(time.time()) + '_final_main.log'
+logging.basicConfig(filename=log_string, filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
+logging.info("starting up")
 
-sec_log_test.do_smth()
-
-'''
-pyinstaller .\logger_test.py --onefile --name test_01 --noconsole
-
-'''
+print(input("press any key to start ")) # stoopid test

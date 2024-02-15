@@ -38,8 +38,11 @@ class Retriever():
         self.req = requester.Requester()
         try:
             self.req.confirm_alarms()
-        except:
-            print("except")
+        except KeyboardInterrupt as KI:
+            logging.exception(KI)
+            raise KeyboardInterrupt
+        except Exception as e:
+            logging.exception(e)
     
     def get_alarms(self):
         return self.req.get_alarms()
@@ -86,6 +89,9 @@ class Retriever():
                 with open('../../pasice.json', 'r') as file:
                     data = json.load(file)
                 return data[msg]
+            except KeyboardInterrupt as KI:
+                logging.exception(KI)
+                raise KeyboardInterrupt
             except Exception as some_exception:
                 logging.warning(some_exception)
             try:

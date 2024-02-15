@@ -64,6 +64,9 @@ class Writer():
             try:
                 for d in data:
                     logging.debug(d)
+            except KeyboardInterrupt as KI:
+                logging.exception(KI)
+                raise KeyboardInterrupt
             except Exception as exec:
                 logging.info(exec)
                 logging.warning("DB selected data not a list")
@@ -77,6 +80,9 @@ class Writer():
             update()
             select()
 
+        except KeyboardInterrupt as KI:
+                logging.exception(KI)
+                raise KeyboardInterrupt
         except Exception as e:
             print(f"Error: {str(e)}")
             logging.error(e)
