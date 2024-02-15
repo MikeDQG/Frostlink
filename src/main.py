@@ -6,9 +6,10 @@ import time
 
 class Main():
     def __init__(self):
-        print(input("press any key to start ")) # stoopid test
-        logging.basicConfig(filename='final_main_1.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
+        #print(input("press any key to start ")) # stoopid test
+        logging.basicConfig(filename='final_main_2.log', filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
         logging.info("starting up")
+        print(input("press any key to continue ")) # stoopid test
         self.reporter = reporter.Reporter()
         logging.debug("Main initialized")
         #self.reporter.retriever.end_session()
