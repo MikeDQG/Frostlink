@@ -24,7 +24,7 @@ class Writer():
             
             update_query = """
             UPDATE RafHA_Komun
-            SET Utrip = ?,
+            SET Utrip = ?"""""",
             Pasica = ?,
             Kapaciteta = ?,
             GlikolVen = ?,
@@ -42,6 +42,14 @@ class Writer():
 
             logging.debug("Rowcount")
             logging.debug(self.cursor.rowcount)
+        
+        def select_version():
+            query_string = "SELECT @@version;"
+            self.cursor.execute(query_string)
+            logging.debug(query_string)
+            verr = self.cursor.fetchone()
+            print(verr)
+            logging.info(verr)
 
         def select():
             data = self.cursor.fetchall()
@@ -57,6 +65,7 @@ class Writer():
             self.conn = pyodbc.connect(self.conn_str)
             self.cursor = self.conn.cursor()
 
+            select_version()
             update()
             select()
 
