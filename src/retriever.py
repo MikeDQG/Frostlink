@@ -81,9 +81,9 @@ class Retriever():
             }
             
             try:
-                with open('../pasice.json', 'r') as file:
+                #with open('../pasice.json', 'r') as file:
                 #with open('../app/pasice.json', 'r') as file:
-                #with open('../../pasice.json', 'r') as file:
+                with open('../../pasice.json', 'r') as file:
                     data = json.load(file)
                 return data[msg]
             except Exception as some_exception:
