@@ -22,6 +22,7 @@ class Writer():
         logging.debug(namedtuple_input)
 
         def update():
+            update_cursor = self.conn.cursor()
             
             update_query = """
             UPDATE RafHA_Komun
@@ -38,13 +39,13 @@ class Writer():
             logging.info(update_query)
             #condition_value = 'condition_value'
 
-            self.cursor.execute(update_query, (UTRIP, namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))
-            #self.cursor.execute(update_query, (namedtuple_input.message))
+            update_cursor.execute(update_query, (UTRIP, namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))
+            #update_cursor.execute(update_query, (namedtuple_input.message))
 
             self.conn.commit()
 
             logging.debug("Rowcount")
-            logging.debug(self.cursor.rowcount)
+            logging.debug(update_cursor.rowcount)
         
         def select_version():
             query_string = "SELECT @@version;"
@@ -55,7 +56,8 @@ class Writer():
             logging.info(verr)
 
         def select():
-            data = self.cursor.fetchall()
+            select_cursor = self.conn.cursor()
+            data = select_cursor.fetchall()
             try:
                 for d in data:
                     logging.debug(d)
