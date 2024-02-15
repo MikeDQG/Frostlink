@@ -57,6 +57,7 @@ class Writer():
 
         def select():
             select_cursor = self.conn.cursor()
+            select_cursor.execute('SELECT * FROM RafHA_Komun')
             data = select_cursor.fetchall()
             try:
                 for d in data:
