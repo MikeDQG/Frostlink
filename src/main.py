@@ -20,7 +20,7 @@ class Main():
             self.reporter.retriever.end_session()
 
     def run(self):      # timer logic
-        relative_time = 30
+        relative_time = 11
         t = time.time()
         STEPPER = 3
         TOTAL_TIME = time.time() + relative_time
