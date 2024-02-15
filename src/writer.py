@@ -32,6 +32,8 @@ class Writer():
             VodaVen = ?,
             VodaNot = ?
             """
+
+            logging.info(update_query)
             #condition_value = 'condition_value'
 
             self.cursor.execute(update_query, (namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))

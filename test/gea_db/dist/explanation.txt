@@ -1,7 +1,0 @@
-serv_test_[01 - 06] ........... stare, ne delajo
-serv_test_07 .................. "SELECT @@version"
-serv_test_08 .................. ne dela, wrong syntax
-serv_test_09 .................. verjetno ne dela, query: "UPDATE RafHA_Komun SET Utrip = 1, Pasica = 'Remote   Off', NovaPasica = 1, Kapaciteta = 0, GlikolVen = 12.34, GlikolNot = 12.35, VodaVen = 12.35, VodaNot = 12.35 WHERE id = 1"
-serv_test_10 .................. ?, query: "UPDATE RafHA_Komun SET Utrip = 1, Pasica = 'Remote   Off', NovaPasica = 1, Kapaciteta = 0, GlikolVen = 12.34, GlikolNot = 12.35, VodaVen = 12.35, VodaNot = 12.35"
-serv_test_11 .................. query: "UPDATE RafHA_Komun SET Utrip = 1"
-serv_test_any_query ........... poljubni query, vpises not sam
