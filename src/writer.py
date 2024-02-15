@@ -20,8 +20,8 @@ class Writer():
     def write(self, namedtuple_input):
         logging.debug("Writer write ")
         logging.debug(namedtuple_input)
-        print(namedtuple_input)
-        print(input("press any key to continue ")) # stoopid test
+        #print(namedtuple_input)
+        #print(input("press any key to continue ")) # stoopid test
 
         def update():
             update_cursor = self.conn.cursor()
@@ -54,7 +54,7 @@ class Writer():
             self.cursor.execute(query_string)
             logging.debug(query_string)
             verr = self.cursor.fetchone()
-            print(verr)
+            #print(verr)
             logging.info(verr)
 
         def select():

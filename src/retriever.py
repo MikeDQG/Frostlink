@@ -53,7 +53,7 @@ class Retriever():
 
     def end_session(self):
         self.req.logout()
-        print("Session ended")
+        #print("Session ended")
 
     def _update_values(self):
         #print('values getting updated')
@@ -110,4 +110,4 @@ class Retriever():
         temporary_val_list.append(int(self.monitoring_updates['active_alarm_count']))
         temporary_val_list.append(None)
         self.final_values = self.Values_tuple._make(temporary_val_list)
-        print(self.final_values._asdict())
+        #print(self.final_values._asdict())

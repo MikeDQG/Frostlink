@@ -10,7 +10,7 @@ class Main():
         #print(input("press any key to start ")) # stoopid test
         logging.basicConfig(filename=log_string, filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
         logging.info("starting up")
-        print(input("press any key to continue ")) # stoopid test
+        #print(input("press any key to continue ")) # stoopid test
         self.reporter = reporter.Reporter()
         logging.debug("Main initialized")
         #self.reporter.retriever.end_session()
@@ -45,8 +45,8 @@ class Main():
         
     def _run(self):     # run main program
         try:
-            print("joke")
-            logging.info("joke")
+            #print("joke")
+            #logging.info("joke")
             self.reporter.main()
         except KeyboardInterrupt as KI:
             logging.exception(KI)

@@ -62,8 +62,8 @@ class Requester():
         }
         response = self.session.post(url, json=payload)
         data = response.json()
-        print(data)
-        print(response.status_code)
+        #print(data)
+        #print(response.status_code)
         logging.info(data)
         logging.info(response.status_code)
         
@@ -74,8 +74,8 @@ class Requester():
         url = 'https://192.168.3.50/PIC6/api/auth/logout'
         payload = { "token": self.token }
         response = self.session.post(url, json=payload)
-        print(response.status_code)
-        print(response.json())
+        #print(response.status_code)
+        #print(response.json())
         logging.info(response.status_code)
         logging.debug(response.json())
 
