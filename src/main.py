@@ -13,8 +13,8 @@ requesterInstance = requester.Requester()
 retrieverInstance = retriever.Retriever(requesterInstance=requesterInstance)
 reporterInstance = reporter.Reporter(retrieverInstance=retrieverInstance, requesterInstance=requesterInstance, writerInstance=writerInstance, listenerInstance=listenerInstance)
 
-def __init__():
-    log_string = str(time.time()) + '_final_main.log'
+def init():
+    log_string = str(time.time()) + '_deep_fix.log' #'_final_main.log'
     logging.basicConfig(filename=log_string, filemode='w', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(module)s %(levelname)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
     logging.info("starting up")
     print("Press 'ctrl + C' to end")
@@ -31,7 +31,7 @@ def __init__():
 
 
 def run():
-    relative_time = 11
+    relative_time = 11                  # popravi to, brez tega v koncni verziji
     t = time.time()
     STEPPER = 3
     TOTAL_TIME = time.time() + relative_time
@@ -45,4 +45,5 @@ def run():
         t = time.time()
     
 
-
+init()
+run()
