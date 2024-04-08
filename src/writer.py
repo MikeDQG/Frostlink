@@ -6,12 +6,11 @@ class Writer():
     def __init__(self):
         self.namedtuple_output = namedtuple('Values', ['message', 'capacity', 'temp1', 'temp2', 'temp3', 'temp4', 'active_alarm_count', 'alarm_name'])
         # Connection string
-        self.server = 'TOGEA15' # Replace 'your_server_name' with your server name
-        self.database = 'Energetika' # Replace 'your_database_name' with your database name
-        self.username = 'sa' # Replace 'your_username' with your SQL Server username
-        self.password = 'togea' # Replace 'your_password' with your SQL Server password
+        self.server = 'TOGEA15'
+        self.database = 'Energetika'
+        self.username = 'sa'
+        self.password = 'togea'
 
-        #logging.debug(server, database, username, password)
 
         self.conn_str = f'DRIVER={{SQL Server}};SERVER={self.server};DATABASE={self.database};UID={self.username};PWD={self.password}'
         logging.debug(self.conn_str)
@@ -20,8 +19,6 @@ class Writer():
     def write(self, namedtuple_input):
         logging.debug("Writer write ")
         logging.debug(namedtuple_input)
-        #print(namedtuple_input)
-        #print(input("press any key to continue ")) # stoopid test
 
         def update():
             update_cursor = self.conn.cursor()
@@ -39,10 +36,8 @@ class Writer():
             UTRIP = 1
 
             logging.info(update_query)
-            #condition_value = 'condition_value'
 
             update_cursor.execute(update_query, (UTRIP, namedtuple_input.message, namedtuple_input.capacity, namedtuple_input.temp1, namedtuple_input.temp2, namedtuple_input.temp3, namedtuple_input.temp4))
-            #update_cursor.execute(update_query, (namedtuple_input.message))
 
             self.conn.commit()
 
@@ -54,7 +49,6 @@ class Writer():
             self.cursor.execute(query_string)
             logging.debug(query_string)
             verr = self.cursor.fetchone()
-            #print(verr)
             logging.info(verr)
 
         def select():
@@ -88,7 +82,6 @@ class Writer():
             logging.error(e)
 
         finally:
-            # Close the connection
             if 'conn' in locals():
                 self.conn.close()
 

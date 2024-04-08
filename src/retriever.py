@@ -16,18 +16,12 @@ class Retriever():
         
     def get_values(self):
         '''getPointValue'''
-        #print('values get')
         self.values = self.req.get_point_value()
 
         self.monitoring_updates = self.req.monitoring()
-        #print("Retriever: line 22: monitoring_updates", self.monitoring_updates)
-        #print("Retriever: line 23: active_alarm_count", self.monitoring_updates['active_alarm_count'])
 
         if int(self.monitoring_updates['active_alarm_count']) > 0:
-            #print('active_alarm_count > 0')
             self.alarms = self.get_alarms()
-            #print(self.alarms)
-        #print('29: values saved 2')
         self._update_values()
         self._save_db_values()
 
@@ -53,16 +47,13 @@ class Retriever():
 
     def end_session(self):
         self.req.logout()
-        #print("Session ended")
 
     def _update_values(self):
-        #print('values getting updated')
         temporary_values = []
         for value in self.values['pathlist']:
             value = { "path": value['path'], "value": value['value'] }
             temporary_values.append(value)
         self.values = temporary_values
-        #print('values updated')
 
     def _save_db_values(self):
         def f_to_c(f):      # Fahrenheit to Celsius
@@ -84,8 +75,6 @@ class Retriever():
             }
             
             try:
-                #with open('../pasice.json', 'r') as file:
-                #with open('../app/pasice.json', 'r') as file:
                 with open('../../pasice.json', 'r') as file:
                     data = json.load(file)
                 return data[msg]
@@ -99,7 +88,6 @@ class Retriever():
             except Exception as another_exception:
                 logging.warning(another_exception)
                 return msg
-        #print('values getting saved')
         temporary_val_list = []
         temporary_val_list.append(msg_to_slo(self.values[0]['value']))
         temporary_val_list.append(int(self.values[1]['value']))
@@ -110,4 +98,3 @@ class Retriever():
         temporary_val_list.append(int(self.monitoring_updates['active_alarm_count']))
         temporary_val_list.append(None)
         self.final_values = self.Values_tuple._make(temporary_val_list)
-        #print(self.final_values._asdict())
