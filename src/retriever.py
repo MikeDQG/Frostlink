@@ -6,8 +6,8 @@ import json
 # if testing doesn't work, try this in terminal: $env:PYTHONPATH="src/"
 
 class Retriever():
-    def __init__(self):
-        self.req = requester.Requester()
+    def __init__(self, requesterInstance):
+        self.requesterInstance = requesterInstance
         self.alarms = None
         self.values = None
         self.monitoring_updates = None
@@ -16,9 +16,9 @@ class Retriever():
         
     def get_values(self):
         '''getPointValue'''
-        self.values = self.req.get_point_value()
+        self.values = self.requesterInstance.get_point_value()
 
-        self.monitoring_updates = self.req.monitoring()
+        self.monitoring_updates = self.requesterInstance.monitoring()
 
         if int(self.monitoring_updates['active_alarm_count']) > 0:
             self.alarms = self.get_alarms()
@@ -29,9 +29,9 @@ class Retriever():
 
     def confirm_alarms(self):
         '''confirm alarms'''
-        self.req = requester.Requester()
+        self.requesterInstance = requester.Requester()
         try:
-            self.req.confirm_alarms()
+            self.requesterInstance.confirm_alarms()
         except KeyboardInterrupt as KI:
             logging.exception(KI)
             raise KeyboardInterrupt
@@ -39,14 +39,14 @@ class Retriever():
             logging.exception(e)
     
     def get_alarms(self):
-        return self.req.get_alarms()
+        return self.requesterInstance.get_alarms()
         
     def logout(self):
-        self.req.logout()
-        self.req = requester.Requester()
+        self.requesterInstance.logout()
+        self.requesterInstance = requester.Requester()
 
     def end_session(self):
-        self.req.logout()
+        self.requesterInstance.logout()
 
     def _update_values(self):
         temporary_values = []
