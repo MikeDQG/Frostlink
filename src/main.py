@@ -11,7 +11,7 @@ listenerInstance = listener.Listener()
 writerInstance = writer.Writer()
 requesterInstance = requester.Requester()
 retrieverInstance = retriever.Retriever(requesterInstance=requesterInstance)
-reporterInstance = reporter.Reporter(retrieverInstance=retrieverInstance, requesterInstance=requesterInstance, writerInstance=writerInstance, listenerInstance=listenerInstance)
+reporterInstance = reporter.Reporter(retrieverInstance=retrieverInstance, writerInstance=writerInstance, listenerInstance=listenerInstance)
 
 def init():
     log_string = str(time.time()) + '_deep_fix.log' #'_final_main.log'

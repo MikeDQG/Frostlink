@@ -5,10 +5,10 @@ import logging
 
 class Reporter():
 
-    def __init__(self, retrieverInstance, requesterInstance, writerInstance, listenerInstance):
+    def __init__(self, retrieverInstance, writerInstance, listenerInstance):
         self.retrieverInstance = retrieverInstance
-        self.writer = writer.Writer()
-        self.listener = listener.Listener()
+        self.writerInstance = writerInstance
+        self.listenerInstance = listenerInstance
         logging.debug("Reporter initialized")
     
     def main(self):
@@ -21,11 +21,11 @@ class Reporter():
 
     def write(self, write_tuple):
         logging.info("writing")
-        self.writer.write(write_tuple)
+        self.writerInstance.write(write_tuple)
     
     def listen(self):
-        self.listener.listen()
-        if self.listener.confirm_alarms != None:
+        self.listenerInstance.listen()
+        if self.listenerInstance.confirm_alarms != None:
             print("Incomplete code: Reporter: 31")
             """ torej tukaj moramo resetirat alarme """
             self.retrieverInstance.confirm_alarms()
